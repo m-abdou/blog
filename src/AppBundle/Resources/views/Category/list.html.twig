@@ -1,0 +1,64 @@
+{% extends "AppBundle::layout.html.twig" %}
+{% block slidbar %}
+    <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+        <li>
+            <a href="{{ path('app_post_list') }}"><i class="icon-chevron-right"></i>List Articles</a>
+        </li>
+        <li>
+            <a href="{{ path('app_category_list') }}"><i class="icon-chevron-right"></i>List Category</a>
+        </li>
+    </ul>
+{% endblock %}
+{% block content %}
+    <div class="row-fluid">
+        <!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Category</div>
+                <div class="pull-right">
+                    <a  href="{{ path('app_category_create') }}" class="badge badge-warning">Create New Category</a>
+                </div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="span12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>name</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for category in categories %}
+                            <tr>
+                                <td>{{ category.id }}</td>
+                                <td>{{ category.name }}</td>
+                                <td>
+                                    <a href="{{ path('app_category_edit', { 'id': category.id }) }}">
+                                        <span class="btn btn-primary">Edit</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /block -->
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/app/assets/DT_bootstrap.css') }}">
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/app/vendors/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/vendors/jquery-1.9.1.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/vendors/datatables/js/jquery.dataTables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/assets/scripts.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/app/assets/DT_bootstrap.js') }}"></script>
+{% endblock %}
