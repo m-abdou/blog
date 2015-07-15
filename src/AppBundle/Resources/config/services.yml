@@ -1,0 +1,38 @@
+services:
+   comment_service:
+      class: AppBundle\Services\CommentService
+      arguments:
+        - "@doctrine.orm.entity_manager"
+        - "@comment_repository"
+
+   category_service:
+      class: AppBundle\Services\CategoryService
+      arguments:
+        - "@doctrine.orm.entity_manager"
+        - "@category_repository"
+
+   article_service:
+      class: AppBundle\Services\ArticleService
+      arguments:
+        - "@doctrine.orm.entity_manager"
+        - "@article_repository"
+
+
+   comment_repository:
+         class: AppBundle\Repository\CommentRepository
+         factory_service: doctrine.orm.entity_manager
+         factory_method:  getRepository
+         arguments: ["AppBundle\Entity\Comment"]
+
+   category_repository:
+         class: AppBundle\Repository\CategoryRepository
+         factory_service: doctrine.orm.entity_manager
+         factory_method:  getRepository
+         arguments: ["AppBundle\Entity\Category"]
+
+   article_repository:
+         class: AppBundle\Repository\ArticleRepository
+         factory_service: doctrine.orm.entity_manager
+         factory_method:  getRepository
+         arguments: ["AppBundle\Entity\Article"]
+
