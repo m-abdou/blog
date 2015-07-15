@@ -128,9 +128,9 @@ class Article
     /**
      * @param \DateTime $createAt
      */
-    public function setCreateAt($createAt)
+    public function setCreateAt()
     {
-        $this->createAt = $createAt;
+        $this->createAt = new \DateTime('now');
     }
 
     /**
@@ -144,9 +144,9 @@ class Article
     /**
      * @param \DateTime $updateAt
      */
-    public function setUpdateAt($updateAt)
+    public function setUpdateAt()
     {
-        $this->updateAt = $updateAt;
+        $this->updateAt = new \DateTime('now');;
     }
 
     /**

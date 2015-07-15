@@ -6,8 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Post;
-use AppBundle\Form\PostType;
+use AppBundle\Entity\Article;
+use AppBundle\Form\ArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PostController extends Controller
@@ -15,47 +15,60 @@ class PostController extends Controller
     /**
      * create post by author
      * @Route("/post/create")
-     * @Template("AppBundle:Post:Create.html.twig")
+     * @Template("")
      */
     public function createAction(Request $request)
     {
-        $postEntity = new Post();
-        $form = $this->createForm(new PostType(), $postEntity);
+        $em       = $this->getEntityManager();
+        $article  = new Article();
+        $form = $this->createForm(new ArticleType(), $article);
         $form->handleRequest($request);
         if($form->isValid()){
-
+            $article = $form->getData();
+            $article->setCreateAt();
+            $article->setUpdateAt();
+            $em->persist($article);
+            $em->flush();
+            $url = $this->generateUrl('app_post_edit',['id'=>$article->getId()]);
+            var_dump($url);
+            return $this->redirect($url);
         }
 
         return array(
             'form'   => $form->createView(),
-            'entity' => $postEntity
+            'entity' => $article
         );
     }
 
     /**
      * edit post by author
      * @Route("/post/edit/{id}")
-     * @Template("AppBundle:Post:edit.html.twig")
-     * @ParamConverter("post", class="AppBundle:Post")
+     * @Template("")
+     * @ParamConverter("article", class="AppBundle:Article")
      */
-    public function editAction(Request $request,Post $post)
+    public function editAction(Request $request,Article $article)
     {
         $em   = $this->getEntityManager();
-        $form = $this->createForm(new PostType(), $post);
+        $form = $this->createForm(new ArticleType(), $article);
         $form->handleRequest($request);
         if($form->isValid()){
-
+            $article = $form->getData();
+            $article->setUpdateAt();
+            $em->persist($article);
+            $em->flush();
+            $url = $this->generateUrl('app_post_edit',['id'=>$article->getId()]);
+            return $this->redirect($url);
         }
 
         return array(
             'form'   => $form->createView(),
-            'entity' => $post
+            'entity' => $article
         );
     }
 
     /**
      * edit post by author
-     * @Route("/posts")
+     * @Route("/post/list")
      * @Template("AppBundle:Post:list.html.twig")
      */
     public function listAction()
@@ -67,4 +80,11 @@ class PostController extends Controller
         );
     }
 
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    public function getEntityManager()
+    {
+        return $this->get('doctrine.orm.entity_manager');
+    }
 }

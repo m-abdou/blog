@@ -30,7 +30,7 @@ class ArticleType  extends AbstractType
             )
             ->add(
                 'content',
-                "textArea",
+                "textarea",
                 array(
                     'label' => 'Content',
                     'attr'  => array('style' => 'width:400px;height:200px')
