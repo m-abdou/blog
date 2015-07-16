@@ -41,12 +41,13 @@
                             </div>
                         </div>
                         <div class="block-content collapse in">
-                            <div class="span3">
-                                <div class="chart" data-percent="73">73%</div>
-                                <div class="chart-bottom-heading"><span class="label label-info">Visitors</span>
-
+                            {% for category in categories %}
+                                <div class="span3">
+                                    <div class="chart-bottom-heading">
+                                        <a class="label label-info">{{ category.name }}</a>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <!-- /block -->
@@ -54,18 +55,23 @@
 
                 <div class="row-fluid">
                     <!-- block -->
+                {% for post in posts %}
                     <div class="block">
                         <div class=" navbar-inner block-header">
-                            <div class="pull-right"><span class="badge badge-warning">View More</span>
-
+                            <div class="muted pull-left ">
+                                {{ post.title }}
+                            </div>
+                            <div class="pull-right">
+                                <a href="{{ path('app_blog_showarticledetails',{'id': post.id }) }}" class="badge badge-warning">View Article</a>
                             </div>
                         </div>
                         <div class="block-content collapse in">
                             <div class="span12">
-
+                                {{ post.content }}
                             </div>
                         </div>
                     </div>
+                {% endfor %}
                     <!-- /block -->
                 </div>
             </div>

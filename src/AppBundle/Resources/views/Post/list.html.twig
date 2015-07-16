@@ -16,7 +16,7 @@
             <div class="navbar navbar-inner block-header">
                 <div class="muted pull-left">Articles</div>
                 <div class="pull-right">
-                    <a  href="{{ path('app_post_create') }}" class="badge badge-warning">Create New Category</a>
+                    <a  href="{{ path('app_post_create') }}" class="badge badge-warning">Create New Article</a>
                 </div>
             </div>
             <div class="block-content collapse in">
@@ -33,7 +33,7 @@
                         {% for post in posts %}
                             <tr>
                                 <td>{{ post.id }}</td>
-                                <td>post.title</td>
+                                <td>{{ post.title }}</td>
                                 <td>
                                     <a href="{{ path('app_post_edit', { 'id': post.id }) }}">
                                         <span class="btn btn-primary">Edit</span>

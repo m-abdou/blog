@@ -52,7 +52,7 @@ class Article
     private $updateAt;
 
     /**
-     *
+     * @var int
      * @ORM\ManyToOne(targetEntity="\AppBundle\Entity\Category", inversedBy="posts");
      * @ORM\JoinColumn(name="category_id",referencedColumnName="id");
      */

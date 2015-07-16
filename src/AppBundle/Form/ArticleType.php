@@ -35,6 +35,14 @@ class ArticleType  extends AbstractType
                     'label' => 'Content',
                     'attr'  => array('style' => 'width:400px;height:200px')
                 )
+            )
+            ->add(
+                'category',
+                "entity",
+                array(
+                    'class' => 'AppBundle:Category',
+                    'property' => 'name',
+                )
             );
 
 

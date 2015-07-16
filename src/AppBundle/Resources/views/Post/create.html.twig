@@ -4,6 +4,9 @@
         <li>
             <a href="{{ path('app_post_list') }}"><i class="icon-chevron-right"></i>List Articles</a>
         </li>
+        <li>
+            <a href="{{ path('app_category_list') }}"><i class="icon-chevron-right"></i>List Category</a>
+        </li>
     </ul>
 {% endblock %}
 {% block content %}
@@ -35,6 +38,13 @@
                                 <span class="control-label">{{ form_errors(form.content)  }}</span>
                             {% endif %}
                         </div>
+                        <div class="control-group">
+                            <label class="control-label">{{ form_label(form.category) }}</label>
+                            <div class="controls">
+                                <span class="input-xlarge">{{ form_widget(form.category) }}</span>
+                            </div>
+                        </div>
+
                         <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Save</button>
                         </div>
