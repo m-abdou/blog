@@ -35,6 +35,7 @@ class BlogController extends Controller
     }
 
     /**
+     * get articles belongs to category
      * @Route("/list/category/{id}")
      * @Template("AppBundle:Blog:home.html.twig")
      * @ParamConverter("category", class="AppBundle:Category")

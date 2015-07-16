@@ -46,7 +46,7 @@ class CategoryController extends Controller
     }
 
     /**
-     * edit category by author
+     * edit category by admin
      * @Route("/category/edit/{id}")
      * @Template("")
      * @ParamConverter("category", class="AppBundle:Category")
@@ -72,7 +72,7 @@ class CategoryController extends Controller
 
 
     /**
-     * edit post by author
+     * list all category
      * @Route("/category/list")
      * @Template("")
      */

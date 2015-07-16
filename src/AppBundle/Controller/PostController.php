@@ -66,7 +66,7 @@ class PostController extends Controller
     }
 
     /**
-     * edit post by author
+     * list all posts created by author
      * @Route("/post/list")
      * @Template("AppBundle:Post:list.html.twig")
      */

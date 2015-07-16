@@ -39,6 +39,7 @@ class CommentService
     }
 
     /**
+     * add comment belongs to article and return all comments referrer to this article
      * @param $articleId
      * @param $comment
      * @return mixed

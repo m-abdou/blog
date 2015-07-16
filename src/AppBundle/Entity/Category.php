@@ -97,7 +97,7 @@ class Category
     /**
      * Remove posts
      *
-     * @param \\AppBundle\Entity\Article $posts
+     * @param \AppBundle\Entity\Article $posts
      */
     public function removePost(\AppBundle\Entity\Article $posts)
     {

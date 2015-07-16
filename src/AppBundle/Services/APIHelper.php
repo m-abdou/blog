@@ -5,7 +5,6 @@ namespace AppBundle\Services;
 use Doctrine\ORM\EntityManager;
 use FOS\RestBundle\View\View;
 use Symfony\Component\Form\Form;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\ConstraintViolationList;
 
 /**
