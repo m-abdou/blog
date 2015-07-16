@@ -1,0 +1,105 @@
+/* flip animation start */
+.flip {
+    -webkit-perspective: 1000;
+    width:100%;
+    position: relative;
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.8s;
+}
+
+.flipIframe{
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.8s;
+}
+
+.order {
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.8s;
+}
+
+.flip-container, .front, .back {
+    width: 320px;
+    backface-visibility: hidden;
+}
+
+
+.face {
+    width: 100%;
+    height: 100%;
+    position:relative;
+    -webkit-backface-visibility: hidden ;
+    z-index: 2;
+}
+.front{
+    position:relative;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.9s;
+    transition: transform 0.9s;
+}
+
+.back {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transition: -webkit-transform 0.9s;
+    transition: transform 0.9s;
+}
+
+
+.back {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(-180deg);
+}
+
+.card.flipped .front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.card.flipped .back {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.flipIframe.flipped .front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.flipIframe.flipped .back {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.order.flipped .front {
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+}
+
+.order.flipped .back {
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+}
+
+.addItemForm{
+    height: 200px;
+}
+/* flip animation end */
