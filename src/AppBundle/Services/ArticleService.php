@@ -33,6 +33,16 @@ class ArticleService
         return $posts;
     }
 
+    /**
+     * get all posts created by authors
+     * @return array $posts
+     */
+    public function getPostsByCategory($category)
+    {
+        $posts = $this->articleRepo->findByCategory($category);
+        return $posts;
+    }
+
 }
 
 

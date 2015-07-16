@@ -30,7 +30,6 @@ class PostController extends Controller
             $em->persist($article);
             $em->flush();
             $url = $this->generateUrl('app_post_edit',['id'=>$article->getId()]);
-            var_dump($url);
             return $this->redirect($url);
         }
 
