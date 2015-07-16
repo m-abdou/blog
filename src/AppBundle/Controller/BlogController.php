@@ -68,6 +68,9 @@ class BlogController extends Controller
      */
     public function showArticleDetails(Article $article)
     {
+        if(!$article->isPublished()){
+            return $this->redirect($this->generateUrl('app_blog_home'));
+        }
         return ['article' => $article];
 
     }

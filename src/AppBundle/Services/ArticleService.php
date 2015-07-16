@@ -4,6 +4,7 @@ namespace AppBundle\Services;
 
 use AppBundle\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManager;
+use AppBundle\Entity\Article;
 
 class ArticleService
 {
@@ -24,22 +25,22 @@ class ArticleService
     }
 
     /**
-     * get all posts created by authors
+     * get all posts created by authors as type Publish
      * @return array $posts
      */
     public function getAllPosts()
     {
-        $posts = $this->articleRepo->findAll();
+        $posts = $this->articleRepo->findBy(['visibility' => Article::Published]);
         return $posts;
     }
 
     /**
-     * get all posts created by authors
+     * get all posts created by authors as type Publish
      * @return array $posts
      */
     public function getPostsByCategory($category)
     {
-        $posts = $this->articleRepo->findByCategory($category);
+        $posts = $this->articleRepo->findBy(['category' => $category,'visibility' => Article::Published]);
         return $posts;
     }
 

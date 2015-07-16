@@ -37,6 +37,14 @@ class ArticleType  extends AbstractType
                 )
             )
             ->add(
+                'visibility',
+                "choice",
+                array(
+                    'choices' => array('1' => 'Yes', '0' => 'No'),
+                    'label' => 'Publish',
+                )
+            )
+            ->add(
                 'category',
                 "entity",
                 array(

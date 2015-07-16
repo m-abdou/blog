@@ -70,6 +70,14 @@ class Article
     private $author;
 
     /**
+     * @ORM\Column(name="visibility",type="boolean")
+     */
+    protected $visibility;
+
+
+    const Published  = 1;
+
+    /**
      * @return int
      */
     public function getId()
@@ -163,6 +171,32 @@ class Article
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVisibility()
+    {
+        return $this->visibility;
+    }
+
+    /**
+     * @param mixed $visibility
+     */
+    public function setVisibility($visibility)
+    {
+        $this->visibility = $visibility;
+    }
+
+    public function isPublished()
+    {
+        if($this->visibility == Article::Published)
+        {
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }
