@@ -47,6 +47,14 @@
           <div class="row-fluid">
               <div class="span3" id="sidebar">
                   {% block slidbar %}
+                      <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                          <li>
+                              <a href="{{ path('app_post_list') }}"><i class="icon-chevron-right"></i>List Articles</a>
+                          </li>
+                          <li>
+                              <a href="{{ path('app_category_list') }}"><i class="icon-chevron-right"></i>List Category</a>
+                          </li>
+                      </ul>
                   {% endblock %}
               </div>
               <div class="span9" id="content">

@@ -1,13 +1,10 @@
 
 {% extends "AppBundle::layout.html.twig" %}
-{#{% block stylesheets %}#}
-    {#{{ parent() }}#}
-    {#{% stylesheets#}
-    {#'bundles/edfa3lyfrontend/css/angularCloak.css'#}
-    {#'bundles/edfa3lyfrontend/css/Edfa3ly/plugins/loading-bar.css'#}
-    {#filter='?uglifycss,cssrewrite' %}#}
-    {#{% endstylesheets %}#}
-{#{% endblock %}#}
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset("bundles/edfa3lyfrontend/css/angularCloak.css")}}" media="all" rel="stylesheet" type="text/css">
+    <link href="{{ asset("bundles/edfa3lyfrontend/css/Edfa3ly/plugins/loading-bar.css")}}" media="all" rel="stylesheet" type="text/css">
+{% endblock %}
 {% block body %}
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -35,7 +32,10 @@
                         </li>
                     </ul>
                     <ul class="nav">
-                        <li class="active">
+                        <li>
+                            <a href="{{ path('app_blog_home')}}">Home</a>
+                        </li>
+                        <li>
                             <a href="{{ path('app_blog_panel')}}">Admin Panel</a>
                         </li>
                     </ul>
