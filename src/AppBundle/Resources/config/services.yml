@@ -4,6 +4,7 @@ services:
       arguments:
         - "@doctrine.orm.entity_manager"
         - "@comment_repository"
+        - "@article_repository"
 
    category_service:
       class: AppBundle\Services\CategoryService
@@ -36,3 +37,6 @@ services:
          factory_method:  getRepository
          arguments: ["AppBundle\Entity\Article"]
 
+   api_helper:
+       class:        AppBundle\Services\APIHelper
+       arguments:    ["@doctrine.orm.default_entity_manager"]

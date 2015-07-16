@@ -38,6 +38,54 @@ class Comment
      */
     private $article;
 
+    /**
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param string $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getArticle()
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param mixed $article
+     */
+    public function setArticle($article)
+    {
+        $this->article = $article;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
 
 
 }

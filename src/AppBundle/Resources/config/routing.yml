@@ -1,0 +1,3 @@
+app_api_comment:
+  resource: @AppBundle/Controller/CommentApIController.php
+  type: rest
