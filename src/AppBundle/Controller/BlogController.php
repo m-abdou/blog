@@ -13,10 +13,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use FOS\RestBundle\Controller\FOSRestController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Controller\BaseController;
 use AppBundle\Entity\Article;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
-class BlogController extends Controller
+class BlogController extends BaseController
 {
     /**
      * @Route("/")
@@ -58,7 +59,11 @@ class BlogController extends Controller
      */
     public function panelAction()
     {
-        return [];
+        if ($this->isUser()) {
+            return [];
+        } else {
+            return $this->redirect($this->generateUrl('app_blog_home'));
+        }
     }
 
     /**

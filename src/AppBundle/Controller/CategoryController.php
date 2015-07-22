@@ -15,18 +15,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\CategoryType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use AppBundle\Controller\BaseController;
 
 
-class CategoryController extends Controller
+class CategoryController extends BaseController
 {
 
     /**
      * create New Category
      * @Route("/category/create")
      * @Template("")
+     *
      */
     public function createAction(Request $request)
     {
+        if(!$this->isAdmin()){
+            return $this->redirect($this->generateUrl('app_blog_panel'));
+        }
         $em             = $this->getEntityManager();
         $categoryEntity = new Category();
         $form           = $this->createForm(new CategoryType(), $categoryEntity);
@@ -53,6 +58,9 @@ class CategoryController extends Controller
      */
     public function editAction(Request $request,Category $category)
     {
+        if(!$this->isAdmin()){
+            return $this->redirect($this->generateUrl('app_blog_panel'));
+        }
         $em   = $this->getEntityManager();
         $form = $this->createForm(new CategoryType(), $category);
         $form->handleRequest($request);
@@ -78,6 +86,9 @@ class CategoryController extends Controller
      */
     public function listAction()
     {
+        if(!$this->isAdmin()){
+            return $this->redirect($this->generateUrl('app_blog_panel'));
+        }
         $categoryService = $this->get('category_service');
         $categories      = $categoryService->getCategories();
         return array(

@@ -4,8 +4,7 @@
       <link href="{{ asset("bundles/app/bootstrap/css/bootstrap-responsive.min.css")}}" media="all" rel="stylesheet" type="text/css">
       <link href="{{ asset("bundles/app/assets/styles.css")}}" media="all" rel="stylesheet" type="text/css">
   {% endblock %}
-
-  {% block body %}
+  {% block header %}
       <div class="navbar navbar-fixed-top">
           <div class="navbar-inner">
               <div class="container-fluid">
@@ -15,34 +14,40 @@
                   </a>
                   <a class="brand" href="">Welcome To Blog</a>
                   <div class="nav-collapse collapse">
-                      <ul class="nav pull-right">
-                          <li class="dropdown">
-                              <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Vincent Gabriel <i class="caret"></i>
+                      {% if app.user %}
+                          <ul class="nav pull-right">
+                              <li class="dropdown">
+                                  <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> {{ app.user }} <i class="caret"></i>
 
-                              </a>
-                              <ul class="dropdown-menu">
-                                  <li>
-                                      <a tabindex="-1" href="#">Profile</a>
-                                  </li>
-                                  <li class="divider"></li>
-                                  <li>
-                                      <a tabindex="-1" href="login.html">Logout</a>
-                                  </li>
-                              </ul>
-                          </li>
-                      </ul>
+                                  </a>
+                                  <ul class="dropdown-menu">
+                                      <li>
+                                          <a tabindex="-1" href="#">Profile</a>
+                                      </li>
+                                      <li class="divider"></li>
+                                      <li>
+                                          <a tabindex="-1" href="{{ path('fos_user_security_logout')}}">Logout</a>
+                                      </li>
+                                  </ul>
+                              </li>
+                          </ul>
+                      {% endif %}
                       <ul class="nav">
                           <li>
                               <a href="{{ path('app_blog_home')}}">Home</a>
                           </li>
+                          {% if app.user %}
                           <li>
                               <a href="{{ path('app_blog_panel')}}">Admin Panel</a>
                           </li>
+                          {% endif %}
                       </ul>
                   </div>
               </div>
           </div>
       </div>
+  {% endblock %}
+  {% block body %}
       <div class="container-fluid">
           <div class="row-fluid">
               <div class="span3" id="sidebar">
@@ -51,9 +56,11 @@
                           <li>
                               <a href="{{ path('app_post_list') }}"><i class="icon-chevron-right"></i>List Articles</a>
                           </li>
+                          {% if is_granted('ROLE_ADMIN') %}
                           <li>
                               <a href="{{ path('app_category_list') }}"><i class="icon-chevron-right"></i>List Category</a>
                           </li>
+                          {% endif %}
                       </ul>
                   {% endblock %}
               </div>

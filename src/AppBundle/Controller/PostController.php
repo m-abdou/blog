@@ -9,8 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Article;
 use AppBundle\Form\ArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use AppBundle\Controller\BaseController;
 
-class PostController extends Controller
+class PostController extends BaseController
 {
     /**
      * create post by author
@@ -19,6 +20,9 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
+        if(!$this->isUser()){
+            return $this->redirect($this->generateUrl('app_blog_home'));
+        }
         $em       = $this->getEntityManager();
         $article  = new Article();
         $form = $this->createForm(new ArticleType(), $article);
@@ -27,6 +31,7 @@ class PostController extends Controller
             $article = $form->getData();
             $article->setCreateAt();
             $article->setUpdateAt();
+            $article->setAuthor($this->getUser());
             $em->persist($article);
             $em->flush();
             $url = $this->generateUrl('app_post_edit',['id'=>$article->getId()]);
@@ -47,6 +52,10 @@ class PostController extends Controller
      */
     public function editAction(Request $request,Article $article)
     {
+        if(!($this->isUser() && $this->isArticleAuthor($article->getAuthor()->getId())))
+        {
+            return $this->redirect($this->generateUrl('app_post_list'));
+        }
         $em   = $this->getEntityManager();
         $form = $this->createForm(new ArticleType(), $article);
         $form->handleRequest($request);
@@ -72,8 +81,12 @@ class PostController extends Controller
      */
     public function listAction()
     {
+        if(!$this->isUser()){
+            return $this->redirect($this->generateUrl('app_blog_home'));
+        }
+        $userId      = $this->getUser()->getId();
         $postService = $this->get('article_service');
-        $posts       = $postService->getAllPosts();
+        $posts       = $postService->getPostsByAuthor($userId);
         return array(
             'posts' => $posts
         );
@@ -86,4 +99,20 @@ class PostController extends Controller
     {
         return $this->get('doctrine.orm.entity_manager');
     }
+
+    /**
+     * check if user is the author of article or not
+     * @param $authorId
+     * @return bool
+     */
+    public function isArticleAuthor($authorId)
+    {
+        $userId = $this->getUserId();
+        if ($userId == $authorId) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

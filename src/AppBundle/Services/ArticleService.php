@@ -35,6 +35,16 @@ class ArticleService
     }
 
     /**
+     * get all posts created by author as type Publish
+     * @return array $posts
+     */
+    public function getPostsByAuthor($id)
+    {
+        $posts = $this->articleRepo->findBy(['author'=>$id,'visibility' => Article::Published]);
+        return $posts;
+    }
+
+    /**
      * get all posts created by authors as type Publish
      * @return array $posts
      */

@@ -3,7 +3,9 @@
     <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
         <li>
             <a href="{{ path('app_post_list') }}"><i class="icon-chevron-right"></i>List Articles</a>
-            <a href="{{ path('app_category_list') }}"><i class="icon-chevron-right"></i>List Category</a>
+            {% if is_granted('ROLE_ADMIN') %}
+              <a href="{{ path('app_category_list') }}"><i class="icon-chevron-right"></i>List Category</a>
+            {% endif %}
         </li>
     </ul>
 {% endblock %}
